@@ -1,0 +1,16 @@
+%h3 Announcements
+
+%table.table
+  %thead
+    %th Date
+    %th Title
+    %th Description
+    %th Animal
+    %th
+  -announcements.each do |anno|
+    %tbody
+      %td=anno.created_at
+      %td=anno.title
+      %td=anno.description
+      %td=anno.animal
+      %td=link_to "Details", announcement_path(anno), class: "btn btn-primary btn-sm"

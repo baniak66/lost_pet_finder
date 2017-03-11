@@ -1,7 +1,11 @@
 class AnnouncementsController < ApplicationController
-  expose :announcements, ->{ Announcements.all }
+  expose :announcements, ->{ Announcement.all }
+  expose :announcement
 
   def index
+  end
+
+  def show
   end
 
 end
