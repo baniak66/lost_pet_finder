@@ -38,6 +38,7 @@ gem "haml-rails", "~> 0.9"
 gem 'bootstrap-sass'
 
 gem 'devise'
+gem 'decent_exposure', '3.0.0'
 
 
 group :development, :test do
