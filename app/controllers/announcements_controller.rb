@@ -13,6 +13,14 @@ class AnnouncementsController < ApplicationController
     end
   end
 
+  def update
+    if announcement.update(announcement_params)
+      redirect_to announcement_path(announcement)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def announcement_params
