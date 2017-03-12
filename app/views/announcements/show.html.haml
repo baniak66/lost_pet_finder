@@ -1,8 +1,10 @@
 %h3
   = announcement.title
-  =link_to "Edit", edit_announcement_path(announcement), class: "btn btn-warning"
-  =link_to "Delete", announcement_path(announcement), method: :delete, class: "btn btn-danger"
+  -if is_owner?(announcement)
+    =link_to "Edit", edit_announcement_path(announcement), class: "btn btn-warning"
+    =link_to "Delete", announcement_path(announcement), method: :delete, class: "btn btn-danger"
+%h4 added by: #{announcement.user.email} on #{announcement.created_at}
 %br
-%h4= announcement.created_at
 %p= announcement.description
+
 =link_to "Back", announcements_path, class: "btn btn-primary"
