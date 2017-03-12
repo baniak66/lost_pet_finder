@@ -1,6 +1,7 @@
 %h3
   = announcement.title
   =link_to "Edit", edit_announcement_path(announcement), class: "btn btn-warning"
+  =link_to "Delete", announcement_path(announcement), method: :delete, class: "btn btn-danger"
 %br
 %h4= announcement.created_at
 %p= announcement.description

@@ -21,6 +21,11 @@ class AnnouncementsController < ApplicationController
     end
   end
 
+  def destroy
+    announcement.destroy
+    redirect_to announcements_path
+  end
+
   private
 
   def announcement_params
