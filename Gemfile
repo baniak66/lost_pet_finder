@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem "haml-rails", "~> 0.9"
 gem 'bootstrap-sass'
+gem 'simple_form'
 
 gem 'devise'
 gem 'decent_exposure', '3.0.0'
