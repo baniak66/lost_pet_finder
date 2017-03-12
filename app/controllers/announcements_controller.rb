@@ -30,7 +30,7 @@ class AnnouncementsController < ApplicationController
   private
 
   def announcement_params
-    params.require(:announcement).permit(:title, :description, :anno_type, :animal)
+    params.require(:announcement).permit(:title, :description, :anno_type, :animal, :avatar)
   end
 
   def check_owner

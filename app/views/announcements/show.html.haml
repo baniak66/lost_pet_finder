@@ -5,6 +5,8 @@
     =link_to "Delete", announcement_path(announcement), method: :delete, class: "btn btn-danger"
 %h4 added by: #{announcement.user.email} on #{announcement.created_at}
 %br
+= image_tag announcement.avatar.url(:medium) {align="left"}
+
 %p= announcement.description
 
 =link_to "Back", announcements_path, class: "btn btn-primary"

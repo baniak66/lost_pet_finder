@@ -1,6 +1,8 @@
 =simple_form_for announcement do |f|
   =f.input :title
   =f.input :description
-  =f.input :anno_type
-  =f.input :animal
-  =f.button :submit
+  =f.input :anno_type, as: :radio_buttons, collection: ['Lost', 'Find'], wrapper: :vertical_radio_and_checkboxes
+  =f.input :animal, as: :radio_buttons, collection: ['Dog', 'Cat', 'Other'], wrapper: :vertical_radio_and_checkboxes
+  =f.input :avatar, as: :file, class: "btn btn-default"
+  =link_to 'Back', announcements_path, class: "btn btn-danger"
+  =f.button :submit, class: 'btn btn-primary'
