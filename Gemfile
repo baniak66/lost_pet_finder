@@ -38,6 +38,7 @@ gem "haml-rails", "~> 0.9"
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem "paperclip", "~> 5.0.0"
+gem 'geocoder'
 
 gem 'devise'
 gem 'decent_exposure', '3.0.0'
