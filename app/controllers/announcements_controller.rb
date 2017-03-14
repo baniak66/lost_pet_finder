@@ -13,7 +13,7 @@ class AnnouncementsController < ApplicationController
     gon.announcements = Gmaps4rails.build_markers(announcements) do |anno, marker|
       marker.lat anno.latitude
       marker.lng anno.longitude
-      marker.infowindow anno.title
+      marker.infowindow "#{view_context.link_to "#{anno.title}", announcement_path(anno)}"
     end
   end
 
