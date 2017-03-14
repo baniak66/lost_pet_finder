@@ -42,6 +42,7 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'gon'
+gem "figaro"
 
 gem 'devise'
 gem 'decent_exposure', '3.0.0'
