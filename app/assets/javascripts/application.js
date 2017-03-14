@@ -19,17 +19,25 @@
 
 $(document).ready(function() {
   handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers([
-      {
-        "lat": gon.announcement.latitude,
-        "lng": gon.announcement.longitude,
-        "infowindow": gon.announcement.title
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(15);
-  });
+  if ($('#map').length) {
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers([
+        {
+          "lat": gon.announcement.latitude,
+          "lng": gon.announcement.longitude,
+          "infowindow": gon.announcement.title
+        }
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(15);
+    });
+  } else if ($('#map_all').length) {
+    handler.buildMap({ provider: {}, internal: {id: 'map_all'}}, function(){
+      markers = handler.addMarkers(gon.announcements);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  }
 });
 

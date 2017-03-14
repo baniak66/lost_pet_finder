@@ -6,8 +6,15 @@ class AnnouncementsController < ApplicationController
   before_action :check_owner, only: [:edit, :update, :destroy]
 
   def show
-    # gon.coordiantes = {lon: announcement.longitude, lat: announcement.latitude}
     gon.announcement = announcement
+  end
+
+  def index
+    gon.announcements = Gmaps4rails.build_markers(announcements) do |anno, marker|
+      marker.lat anno.latitude
+      marker.lng anno.longitude
+      marker.infowindow anno.title
+    end
   end
 
   def create

@@ -9,6 +9,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = csrf_meta_tags
   %body
+    %script{src: "//maps.google.com/maps/api/js?key="+"#{ENV['maps_key']}"}
     .container
       %header
         = render 'layouts/navigation'
