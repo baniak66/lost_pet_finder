@@ -1,12 +1,21 @@
-%h3
-  = announcement.title
-  -if is_owner?(announcement)
-    =link_to "Edit", edit_announcement_path(announcement), class: "btn btn-warning"
-    =link_to "Delete", announcement_path(announcement), method: :delete, class: "btn btn-danger"
-%h4 added by: #{announcement.user.email} on #{announcement.created_at}
-%br
-= image_tag announcement.avatar.url(:medium) {align="left"}
+%script{src: "//maps.google.com/maps/api/js?key="+"#{ENV['maps_key']}"}
 
-%p= announcement.description
+.row
+  .col-md-6
+    %h3
+      = announcement.title
+      -if is_owner?(announcement)
+        =link_to "Delete", announcement_path(announcement), method: :delete, class: "btn btn-danger pull-right"
+        =link_to "Edit", edit_announcement_path(announcement), class: "btn btn-warning pull-right"
+    %h4 added by: #{announcement.user.email} on #{announcement.created_at}
+    %br
+    = image_tag announcement.avatar.url(:medium) {align="left"}
 
-=link_to "Back", announcements_path, class: "btn btn-primary"
+    %p= announcement.description
+
+  .col-md-6
+    %h3
+    #map{style: 'width: 100%; height: 400px;'}
+
+.row
+  =link_to "Back", announcements_path, class: "btn btn-primary"

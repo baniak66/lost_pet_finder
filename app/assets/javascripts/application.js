@@ -12,6 +12,24 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
+//= require underscore
+//= require gmaps/google
 //= require_tree .
+
+$(document).ready(function() {
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": gon.announcement.latitude,
+        "lng": gon.announcement.longitude,
+        "infowindow": gon.announcement.title
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(15);
+  });
+});
+

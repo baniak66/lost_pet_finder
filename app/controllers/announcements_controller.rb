@@ -5,6 +5,11 @@ class AnnouncementsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :check_owner, only: [:edit, :update, :destroy]
 
+  def show
+    # gon.coordiantes = {lon: announcement.longitude, lat: announcement.latitude}
+    gon.announcement = announcement
+  end
+
   def create
     announcement.user_id = current_user.id
     if announcement.save
