@@ -1,12 +1,22 @@
 class AnnouncementsController < ApplicationController
-  expose :announcements, ->{ Announcement.all }
+  expose :announcements, ->{ Announcement.all.where(open: true) }
   expose :announcement
+  expose :users_announcements, ->{ Announcement.all.where(user_id: current_user.id) }
 
   before_action :authenticate_user!, except: [:index, :show]
   before_action :check_owner, only: [:edit, :update, :destroy]
 
   def show
     gon.announcement = announcement
+  end
+
+  def users
+  end
+
+  def close
+    announcement.open = false
+    announcement.save
+    redirect_to users_announcements_path
   end
 
   def index

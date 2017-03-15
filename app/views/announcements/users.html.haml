@@ -1,0 +1,19 @@
+%table.table
+  %thead
+    %th Date
+    %th Title
+    %th Description
+    %th Animal
+    %th
+    %th
+  -users_announcements.each do |anno|
+    %tbody
+      %td=anno.created_at
+      %td=anno.title
+      %td=anno.description
+      %td=anno.animal
+      %td=link_to "Details", announcement_path(anno), class: "btn btn-primary btn-sm"
+      -if anno.open == true
+        %td=link_to "Close", close_announcement_path(anno), method: :post, class: "btn btn-warning btn-sm"
+      -else
+        %td Closed
