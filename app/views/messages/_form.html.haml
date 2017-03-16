@@ -1,0 +1,5 @@
+=simple_form_for message, url: announcement_messages_path(announcement_id: announcement.id) do |f|
+  =f.input :content
+  =f.hidden_field :user_id, :value => current_user.id
+  =f.hidden_field :announcement_id, :value => announcement.id
+  =f.button :submit, class: 'btn btn-primary'

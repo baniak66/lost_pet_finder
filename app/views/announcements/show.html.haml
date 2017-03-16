@@ -10,10 +10,15 @@
     = image_tag announcement.avatar.url(:medium) {align="left"}
 
     %p= announcement.description
+    %h4 Messages
+    %ul
+      -announcement.messages.each do |m|
+        %li= m.content
+    =render 'messages/form'
+    %br
 
   .col-md-6
     %h3
     #map{style: 'width: 100%; height: 400px;'}
-
 .row
   =link_to "Back", announcements_path, class: "btn btn-primary"

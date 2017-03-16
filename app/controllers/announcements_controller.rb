@@ -2,6 +2,7 @@ class AnnouncementsController < ApplicationController
   expose :announcements, ->{ Announcement.all.where(open: true) }
   expose :announcement
   expose :users_announcements, ->{ Announcement.all.where(user_id: current_user.id) }
+  expose :message, -> { announcement.messages.new }
 
   before_action :authenticate_user!, except: [:index, :show]
   before_action :check_owner, only: [:edit, :update, :destroy]
