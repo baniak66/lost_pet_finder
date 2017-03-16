@@ -5,7 +5,8 @@
       -if is_owner?(announcement)
         =link_to "Delete", announcement_path(announcement), method: :delete, class: "btn btn-danger pull-right"
         =link_to "Edit", edit_announcement_path(announcement), class: "btn btn-warning pull-right"
-    %h4 added by: #{announcement.user.email} on #{announcement.created_at}
+    / %h4 added by: #{announcement.user.email} on #{announcement.created_at}
+    %h4= announcement.create_details
     %br
     = image_tag announcement.avatar.url(:medium) {align="left"}
 
@@ -13,7 +14,9 @@
     %h4 Messages
     %ul
       -announcement.messages.each do |m|
-        %li= m.content
+        %li
+          = m.content
+          = m.create_details
     =render 'messages/form'
     %br
 
