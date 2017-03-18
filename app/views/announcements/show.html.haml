@@ -17,7 +17,11 @@
           %strong
             = m.content
           = m.create_details
-    =render 'messages/form'
+    -if user_signed_in?
+      =render 'messages/form'
+    -else
+      Please login to add message ...
+
     %br
 
   .col-md-6
