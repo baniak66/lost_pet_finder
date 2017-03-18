@@ -43,6 +43,7 @@ gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'gon'
 gem "figaro"
+gem 'bullet'
 
 gem 'devise'
 gem 'decent_exposure', '3.0.0'
