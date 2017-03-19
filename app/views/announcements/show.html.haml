@@ -1,18 +1,18 @@
 .row
   .col-md-6
     %h3
-      = announcement.title
-      -if is_owner?(announcement)
-        =link_to "Delete", announcement_path(announcement), method: :delete, class: "btn btn-danger pull-right"
-        =link_to "Edit", edit_announcement_path(announcement), class: "btn btn-warning pull-right"
-    %h4= announcement.create_details
+      = announcement_show.title
+      -if is_owner?(announcement_show)
+        =link_to "Delete", announcement_path(announcement_show), method: :delete, class: "btn btn-danger pull-right"
+        =link_to "Edit", edit_announcement_path(announcement_show), class: "btn btn-warning pull-right"
+    %h4= announcement_show.create_details
     %br
-    = image_tag announcement.avatar.url(:medium) {align="left"}
+    = image_tag announcement_show.avatar.url(:medium) {align="left"}
 
-    %p= announcement.description
+    %p= announcement_show.description
     %h4 Messages
     %ul
-      -announcement.messages.each do |m|
+      -announcement_show.messages.each do |m|
         %li
           %strong
             = m.content

@@ -1,6 +1,7 @@
 class AnnouncementsController < ApplicationController
   expose_decorated :announcements, ->{ Announcement.all.where(open: true) }
-  expose_decorated :announcement, ->{ Announcement.includes(messages: [:user]).find(params[:id]) }
+  expose_decorated :announcement_show, ->{ Announcement.includes(messages: [:user]).find(params[:id]) }
+  expose :announcement
   expose :users_announcements, ->{ Announcement.all.where(user_id: current_user.id) }
   expose_decorated :message, -> { announcement.messages.new }
 
