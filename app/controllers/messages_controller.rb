@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   def create
     if message.save
       redirect_to announcement_path(message.announcement_id)
-      MessageMailer.new_message_email(message.announcement.user_id).deliver_now
+      MessageMailer.new_message_email(message.announcement.user_id).deliver
     end
   end
 

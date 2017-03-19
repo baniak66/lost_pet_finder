@@ -1,4 +1,5 @@
 class MessageMailer < ActionMailer::Base
+  default from: "info@lostpetfinder.com"
 
   def new_message_email(user)
     @user = User.find(user)
