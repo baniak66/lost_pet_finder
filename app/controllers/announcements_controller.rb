@@ -1,5 +1,7 @@
 class AnnouncementsController < ApplicationController
-  expose_decorated :announcements, ->{ Announcement.all.where(open: true) }
+  expose :announcements_all, ->{ Announcement.all.where(open: true) }
+  expose_decorated :announcements, ->{ Announcement.all.where(open: true).paginate(:page => params[:page], :per_page => 10)
+ }
   expose_decorated :announcement_show, ->{ Announcement.includes(messages: [:user]).find(params[:id]) }
   expose :announcement
   expose :users_announcements, ->{ Announcement.all.where(user_id: current_user.id) }
@@ -22,7 +24,7 @@ class AnnouncementsController < ApplicationController
   end
 
   def index
-    gon.announcements = Gmaps4rails.build_markers(announcements) do |anno, marker|
+    gon.announcements = Gmaps4rails.build_markers(announcements_all) do |anno, marker|
       marker.lat anno.latitude
       marker.lng anno.longitude
       marker.infowindow "#{view_context.link_to "#{anno.title}", announcement_path(anno)}"

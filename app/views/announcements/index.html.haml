@@ -1,7 +1,11 @@
+
 %h3 Announcements
-
 #map_all{style: 'width: 100%; height: 400px;'}
+%br
 
+=link_to "New announcenemt", new_announcement_path, class: "btn btn-warning" if user_signed_in?
+%br
+= will_paginate announcements
 %table.table
   %thead
     %th Date
@@ -16,6 +20,4 @@
       %td=anno.description
       %td=anno.animal
       %td=link_to "Details", announcement_path(anno), class: "btn btn-primary btn-sm"
-
-%br
-=link_to "Add announcenemt", new_announcement_path, class: "btn btn-primary"
+= will_paginate announcements

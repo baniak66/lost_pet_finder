@@ -46,7 +46,8 @@ gem "figaro"
 gem 'bullet'
 gem 'activeadmin', github: 'activeadmin'
 gem 'faker'
-
+gem 'will_paginate', '~> 3.1.0'
+gem 'bootstrap-will_paginate'
 gem 'devise'
 gem 'decent_exposure', '3.0.0'
 gem 'decent_decoration', '~> 0.1.0'
