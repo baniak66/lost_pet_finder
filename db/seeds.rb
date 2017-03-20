@@ -1,8 +1,46 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+puts "Seeds: start"
+CITIES = %w(Bielsko-Biala Bytom Chorzow Gliwice Jastrzebie-Zdroj Jaworzno Katowice
+              Myslowice Rybnik Siemianowice Sosnowiec Swietocholowice Tychy Zabrze Zory)
+ANNO_TYPE = %w(Lost Find)
+ANIMAL = %w(dog cat)
+AdminUser.create!(email: 'admin@lostpetfinder.com', password: 'password', password_confirmation: 'password')
+
+8.times do
+  User.create!(
+    email: Faker::Internet.email,
+    password: Faker::Internet.password(8)
+  )
+end
+puts "Users created"
+
+users = User.all
+
+3.times do
+  users.each do |user|
+    animal = ANIMAL.sample
+    announcement = Announcement.create!(
+      place: CITIES.sample,
+      title: Faker::Lorem.sentence,
+      description: Faker::Lorem.paragraph,
+      animal: animal,
+      anno_type: ANNO_TYPE.sample,
+      user_id: user.id,
+      avatar: File.new("app/assets/images/"+animal+".jpg")
+    )
+  end
+end
+puts "Announcement created"
+
+2..6.times do
+  Announcement.all.each do |anno|
+    message = anno.messages.create!(
+      user_id: users.sample.id,
+      content: Faker::Lorem.sentence
+    )
+  end
+end
+puts "Messages created"
+
+puts "Seeds: finished"
+
+

@@ -45,6 +45,7 @@ gem 'gon'
 gem "figaro"
 gem 'bullet'
 gem 'activeadmin', github: 'activeadmin'
+gem 'faker'
 
 gem 'devise'
 gem 'decent_exposure', '3.0.0'
