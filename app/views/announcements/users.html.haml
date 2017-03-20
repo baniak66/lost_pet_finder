@@ -1,19 +1,27 @@
 %table.table
   %thead
+    %th
     %th Date
     %th Title
     %th Description
     %th Animal
+    %th Messages
+    %th
     %th
     %th
   -users_announcements.each do |anno|
     %tbody
+      -if anno.open == true
+        %td=link_to "Close", close_announcement_path(anno), method: :post, class: "btn btn-success btn-sm"
+      -else
+        %td Closed
       %td=anno.created_at
       %td=anno.title
       %td=anno.description
       %td=anno.animal
+      %td=anno.messages.count
       %td=link_to "Details", announcement_path(anno), class: "btn btn-primary btn-sm"
-      -if anno.open == true
-        %td=link_to "Close", close_announcement_path(anno), method: :post, class: "btn btn-warning btn-sm"
-      -else
-        %td Closed
+      %td= link_to "Edit", edit_announcement_path(anno), class: "btn btn-warning btn-sm pull-right"
+      %td= link_to "Delete", announcement_path(anno), method: :delete, class: "btn btn-danger btn-sm pull-right"
+
+=link_to "Add announcenemt", new_announcement_path, class: "btn btn-primary"

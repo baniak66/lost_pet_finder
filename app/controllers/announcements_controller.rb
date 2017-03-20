@@ -58,7 +58,7 @@ class AnnouncementsController < ApplicationController
   end
 
   def check_owner
-    unless current_user == announcement.user_id
+    unless current_user.id == announcement.user_id
       redirect_to announcements_path, flash: {error: "Action restricted only for announcement owner"}
     end
   end
