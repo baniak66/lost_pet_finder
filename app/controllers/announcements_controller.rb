@@ -42,9 +42,9 @@ class AnnouncementsController < ApplicationController
 
   def update
     if announcement.update(announcement_params)
-      redirect_to announcement_path(announcement)
+      redirect_to announcement_path(announcement), notice: "Announcement updated."
     else
-      render :edit, notice: "Announcement updated."
+      render :edit, notice: "Something went wrong."
     end
   end
 
