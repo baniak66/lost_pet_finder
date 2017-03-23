@@ -4,7 +4,6 @@ RSpec.describe Announcement, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :title }
     it { is_expected.to validate_presence_of :description }
-    it { is_expected.to validate_presence_of :open }
     it { is_expected.to validate_presence_of :animal }
     it { is_expected.to validate_presence_of :anno_type }
     it { is_expected.to validate_presence_of :user_id }
