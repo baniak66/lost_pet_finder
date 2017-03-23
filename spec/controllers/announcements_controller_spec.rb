@@ -51,6 +51,16 @@ RSpec.describe AnnouncementsController, type: :controller do
       delete :destroy, params: { id: announcement.id }
       expect(response).to redirect_to(new_user_session_path)
     end
+
+    it "can't close announcement" do
+      post :close, params: { id: announcement.id }
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it "can't display user announcements" do
+      get :users
+      expect(response).to redirect_to(new_user_session_path)
+    end
   end
 
   describe 'logged user' do
@@ -71,6 +81,11 @@ RSpec.describe AnnouncementsController, type: :controller do
 
     it "can display new announcement form" do
       get :new
+      expect(response).to be_success
+    end
+
+    it "can display users announcements page" do
+      get :users
       expect(response).to be_success
     end
 
@@ -130,6 +145,33 @@ RSpec.describe AnnouncementsController, type: :controller do
 
         it "can't update announcement" do
           subject
+          expect(flash[:error]).to eq 'Action restricted only for announcement owner'
+        end
+      end
+    end
+
+    describe "try to close announcement" do
+      let(:params) do
+        { params: { id: announcement.id } }
+      end
+      subject { post :close, params }
+
+      context "author" do
+        let!(:announcement) { create :announcement, user: user }
+
+        it "can close announcement" do
+          subject
+          expect(announcement.reload.open).to eq(false)
+        end
+      end
+
+      context "not author" do
+        let!(:author) { create :user }
+        let!(:announcement) { create :announcement, user: author }
+
+        it "can't close announcement" do
+          subject
+          expect(announcement.reload.open).to eq(true)
           expect(flash[:error]).to eq 'Action restricted only for announcement owner'
         end
       end
