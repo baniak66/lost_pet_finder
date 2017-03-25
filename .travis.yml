@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - 2.4.0
+before_script:
+  - psql -c 'create lost_pet_finder_test;' -U postgres
+addons:
+  postgresql: '9.3'
+notifications:
+  email: false
