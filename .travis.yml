@@ -1,9 +1,14 @@
 language: ruby
 rvm:
-  - 2.4.0
+- 2.4.0
 before_script:
-  - psql -c 'create lost_pet_finder_test;' -U postgres
+- psql -c 'create database lost_pet_finder_test;' -U postgres
 addons:
   postgresql: '9.3'
+  code_climate:
+    repo_token:
+      secure: O1t8tIMj5unuPqlUmgISOzaR1k43TdnR7PQjqHCNEAtlhH3FoxR4Z6SxdjLsYYID+1X3yGEDMZb1YmRlQ05UZ5kQGUosxBvqkqymMbkHzVIaAeqfpxeXe4Q2uE3nn56imAhwrZ/W6VEs1itR/f4I58yieDoaqd6Kmynjbi13oXftdvC4Z6zhvYcr0GvzMGgwnpLebPCLviTRGHmWqMyAHE6wgFEC8XEhmXGPRhL/VHIgqIXsaGIahFrbU1kM2+sE/io45eB7gaakZ2z2AxzhCs2TtOW1yrzIw6fNh27OyOUA4343XSke6PHn+bsdUEz3pB2+5v5xjTLxpO+hsdD7W/BaN5dj54EqmC/MQ1kiO3aTNdhbBo3w8GctXYyl9ikMjNyR2ee9BTxMXain9LZfnTLUEOHHu0O/emLmmivfv5n4hJgEHEcvEJVHaSdgvlw/xX1R2uEHI0SvdFW90MeA3n9T1ZROtWaGvKwyDs12gBT/XWE5pSCYjlBk4a6CV4TWmhJiQdaUGTrIl2k5pRhanK4ehNML2c7XosopIXfmV3af9pUY8fnYLFzOIqYPaF1m1FduvuEIlwulEjNF21nZ9GwelKCIn7FGjDQMn++rAtpL99ZOXhbDUKyBrD8nGB1Np/EB8nO0Hr1N2rMK5Qk7wLdtL1Gtwp1geVGrgRaDcqk=
 notifications:
   email: false
+after_success:
+- bundle exec codeclimate-test-reporter
