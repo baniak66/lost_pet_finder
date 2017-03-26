@@ -1,24 +1,7 @@
-# README
+Lost Pet Finder
+===============
+[![Build Status](https://travis-ci.org/baniak66/lost_pet_finder.svg?branch=master)](https://travis-ci.org/baniak66/lost_pet_finder)
+[![Code Climate](https://codeclimate.com/github/baniak66/lost_pet_finder/badges/gpa.svg)](https://codeclimate.com/github/baniak66/lost_pet_finder)
+[![Test Coverage](https://codeclimate.com/github/baniak66/lost_pet_finder/badges/coverage.svg)](https://codeclimate.com/github/baniak66/lost_pet_finder/coverage)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Application that helps to find lost pets. User can add announcement about lost or find animal. App presents localization of animal on Google map. Application has also administration panel created with ActiveAdmin gem.
